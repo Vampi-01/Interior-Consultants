@@ -1,0 +1,392 @@
+/* 
+small screen
+
+  menu links : 18px 500
+  menu links active: 18px 700 Underline
+  btn : 14px 200
+  h1 : 36px 500
+  main text : 14px 400
+  links : 14px 700
+  name : 12px 500
+  intro: 10px 500
+  h2 : 18px 700
+  username: 14px 700
+Large Screen
+  menu links : 18px 500
+  menu links active: 18px 700 Underline
+  logo: btn : 14px 200
+  h1: 48px 400
+  main text: 24px 400
+  links : 18px 700
+  name : 14px 500
+  intro: 12px 500
+  h2 : 24px 700
+  username: 14px 700
+*/
+:root {
+  /* colors */
+
+  --clr-primary: #ffffff;
+  --clr-secondary: #828282;
+
+  /* Font Weights */
+
+  --fw-light: 200;
+  --fw-reg: 400;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+
+  /* Font Sizes */
+
+  /* 10px */
+  --fs-100: 0.625rem;
+  /* 12px */
+  --fs-200: 0.75rem;
+  /* 14px */
+  --fs-300: 0.875rem;
+  /* 16px */
+  --fs-400: 1rem;
+  /* 18px */
+  --fs-500: 1.125rem;
+  /* 22px */
+  --fs-600: 1.375rem;
+  /* 24px */
+  --fs-700: 1.5rem;
+  /* 36px */
+  --fs-800: 2.25rem;
+  /* 48px */
+  --fs-900: 3rem;
+
+  /* Elements font Sizes */
+
+  --fs-menu-link: var(--fs-500);
+  --fs-logo: var(--fs-300);
+  --fs-heading: var(--fs-800);
+  --fs-text: var(--fs-300);
+  --fs-links: var(--fs-300);
+  --fs-title: var(--fs-200);
+  --fs-intro: var(--fs-100);
+  --fs-subHeading: var(--fs-500);
+}
+
+/* General reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+body {
+  background-color: #181719;
+}
+p,
+a {
+  font-family: "Montserrat", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style-type: none;
+}
+h1,
+h2 {
+  font-family: "Lora", serif;
+}
+img {
+  width: 100%;
+}
+
+/* General Styling */
+
+.container {
+  width: 90%;
+  margin-inline: auto;
+  padding-block: 2em;
+}
+
+/* Flex Utility */
+
+.flex {
+  display: flex;
+}
+.f-wide {
+  justify-content: space-between;
+}
+.f-align-center {
+  align-items: center;
+}
+.gap {
+  gap: 4em;
+}
+.logo {
+  font-family: "Crimson Pro", serif;
+  font-size: var(--fs-logo);
+  font-weight: var(--fw-light);
+  border: 2px solid #ffffff;
+  border-radius: 3px;
+  padding: 0.5em 0.75em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+/* Nav */
+
+.header {
+  position: relative;
+}
+.menu {
+  display: none;
+}
+.menu-link {
+  font-size: var(--fs-menu-link);
+  font-weight: var(--fw-bold);
+  padding: 0.5em 0.75em;
+}
+.active {
+  border-bottom: 2px solid #ffffff;
+}
+@media (max-width: 50em) {
+  .nav {
+    display: none;
+    position: fixed;
+    inset: 7em 1rem auto;
+    background: #181719;
+    padding-block: 4em;
+    box-shadow: 0 0 0.75em rgba(0 0 0 / 0.05);
+    z-index: 3;
+  }
+  .header[data-overlay]::before {
+    content: "";
+    position: fixed;
+    height: 100vh;
+    inset: 0;
+    background-color: #181719;
+    z-index: 2;
+  }
+  .menu {
+    display: grid;
+    gap: 3em;
+    text-align: center;
+    font-weight: var(--fw-bold);
+    color: #ffffff;
+    z-index: 3;
+  }
+  .nav[data-visible] {
+    display: block;
+  }
+  .menutoggle {
+    display: block;
+    z-index: 3;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    padding: 0.5em;
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+/* * ===== Ham Burger Menu ===== */
+.menutoggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+.line {
+  fill: none;
+  stroke: rgb(217, 217, 217);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dasharray 250ms cubic-bezier(0.1, 0.01, 0.72, 0.27),
+    stroke-dashoffset 300ms cubic-bezier(0.1, 0.01, 0.72, 0.27);
+}
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+.no-scroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* * ===== Ham Burger Menu End ===== */
+
+/* Section */
+
+.section {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.heading {
+  font-size: var(--fs-heading);
+  font-weight: var(--fw-semi-bold);
+  margin-bottom: 1rem;
+}
+.text {
+  font-size: var(--fs-text);
+  max-width: 65%;
+  text-align: left;
+
+  margin-bottom: 1rem;
+}
+.link {
+  text-transform: uppercase;
+  font-size: var(--fs-links);
+  font-weight: var(--fw-bold);
+}
+.img {
+  position: relative;
+}
+.overlay {
+  text-align: left;
+  padding: 1em 2em;
+  background-color: #181719;
+  position: absolute;
+  right: 1em;
+  left: 3em;
+  /* z-index: 1; */
+  transform: translateY(-45%);
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: 3em 1fr;
+  column-gap: 1em;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.dp {
+  border-radius: 50px;
+}
+.title {
+  font-size: var(--fs-title);
+  font-weight: var(--fw-semi-bold);
+  margin-bottom: 0.25em;
+}
+.intro {
+  font-size: var(--fs-intro);
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-secondary);
+}
+.sub-heading {
+  font-size: var(--fs-subHeading);
+  font-weight: var(--fw-bold);
+  max-width: 80%;
+}
+.username {
+  text-align: center;
+  margin-top: 10em;
+  font-size: 14px;
+}
+.name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: red;
+  margin-inline: 0.5em;
+}
+
+/* Media queries */
+
+@media (min-width: 50em) {
+  .menu {
+    display: flex;
+  }
+  .menutoggle {
+    display: none;
+  }
+}
+@media (min-width: 480px) and (max-width: 798px) {
+  :root {
+    --fs-heading: var(--fs-500);
+    --fs-text: var(--fs-300);
+    --fs-links: var(--fs-200);
+    --fs-title: var(--fs-300);
+    --fs-intro: var(--fs-200);
+    --fs-subHeading: var(--fs-500);
+  }
+  .text {
+    max-width: 65%;
+  }
+
+  .overlay {
+    left: 40%;
+  }
+  .sub-heading {
+    max-width: 89%;
+  }
+}
+
+@media (min-width: 799px) and (max-width: 1198px) {
+  :root {
+    --fs-heading: var(--fs-500);
+    --fs-text: var(--fs-300);
+    --fs-links: var(--fs-200);
+    --fs-title: var(--fs-300);
+    --fs-intro: var(--fs-200);
+    --fs-subHeading: var(--fs-500);
+  }
+  .text {
+    max-width: 65%;
+  }
+  .section {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5em;
+  }
+  .overlay {
+    left: 40%;
+  }
+  .sub-heading {
+    max-width: 85%;
+  }
+}
+@media (min-width: 1199px) {
+  :root {
+    --fs-heading: var(--fs-900);
+    --fs-text: var(--fs-700);
+    --fs-links: var(--fs-500);
+    --fs-title: var(--fs-300);
+    --fs-intro: var(--fs-200);
+    --fs-subHeading: var(--fs-700);
+  }
+  .section {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5em;
+  }
+  .overlay {
+    left: 40%;
+  }
+  .sub-heading {
+    max-width: 85%;
+  }
+}
